@@ -10,6 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE contacts (
     id SERIAL PRIMARY KEY,
+    user_email VARCHAR NOT NULL,
     contact_name VARCHAR NOT NULL,
     contact_email VARCHAR NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
