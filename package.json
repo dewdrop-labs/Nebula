@@ -12,6 +12,7 @@
     "@aztec/accounts": "^0.76.4-devnet-test-rc3",
     "@aztec/aztec.js": "^0.76.4-devnet-test-rc3",
     "@aztec/noir-contracts.js": "^0.76.4-devnet-test-rc3",
+    "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
