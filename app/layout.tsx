@@ -12,11 +12,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700"], 
   variable: "--font-montserrat", 
 });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
