@@ -2,10 +2,10 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     wallet_address VARCHAR NOT NULL,
-    user_email VARCHAR NOT NULL,
-    backup_email VARCHAR NOT NULL,
-    passwordHash VARCHAR NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    google_email VARCHAR NOT NULL UNIQUE,
+    google_sub VARCHAR NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP
 );
 
 CREATE TABLE contacts (
