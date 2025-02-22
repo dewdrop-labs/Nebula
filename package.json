@@ -12,6 +12,7 @@
     "@aztec/accounts": "^0.76.4-devnet-test-rc3",
     "@aztec/aztec.js": "^0.76.4-devnet-test-rc3",
     "@aztec/noir-contracts.js": "^0.76.4-devnet-test-rc3",
+    "@vercel/postgres": "^0.10.0",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "react": "^19.0.0",
@@ -30,5 +31,6 @@
   },
   "main": "index.js",
   "author": "Isaac Onyemaechi <amaechiisaac450@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
 }
