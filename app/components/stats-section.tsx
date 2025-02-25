@@ -14,7 +14,7 @@ interface StatItemProps {
   
   export function StatsSection() {
     return (
-      <div className="relative border-none z-20 mt-20 py-7 bg-white md:mt-32 shadow-lg rounded-t-[3rem]">
+      <div className="relative border-none z-20 mt-20 py-7 bg-white md:mt-40 shadow-lg rounded-t-[3rem]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <StatItem value="150K" label="Happy Clients" />
           <StatItem value="80K" label="Successful Transfers" />

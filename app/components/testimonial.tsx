@@ -40,7 +40,7 @@ export default function Testimonials() {
 
 
   return (
-    <div className="flex flex-col items-center text-center bg-gray-100 py-12 px-6 font-sans">
+    <div className="flex flex-col items-center text-center bg-gray-100 py-12 px-6 font-sans w-full mt-6">
       <h2 className="text-2xl font-bold text-black">Testimonials</h2>
       <p className="text-gray-500">Your Security, Our Priority</p>
       <div className="bg-white p-6   shadow-lg mt-6 max-w-[717px] h-[300px] rounded-[31px] text-center">

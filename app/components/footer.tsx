@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="bg-[#D9D9D9] pt-[57px] pb-[18px] lg:px-[61px] px-[15px]">
+        <footer className="bg-gray-100 pt-[57px] py-4 lg:px-[61px] px-[15px]">
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-[25%]">
                 <div className="">
                     <h3 className="text-[23px] mb-[18px]">Nebula</h3>

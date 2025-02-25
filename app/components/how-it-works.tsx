@@ -1,6 +1,6 @@
 export default function HowItWorks() {
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 bg-white text-black p-4 rounded-lg font-montserrat">
+    <div className="flex flex-col items-center justify-center gap-6 text-black p-4 rounded-lg font-montserrat mt-12">
       <div className="flex flex-col justify-center items-center space-y-4">
         <h2 className="text-4xl font-bold text-center">How It Works</h2>
         <p className="text-center text-[#302F2F] font-light">

@@ -5,22 +5,12 @@ import { StatsSection } from "./stats-section";
 export function Hero() {
   return (
    <>
-      <div className="relative h-[706px] max-w-[1068px] overflow-hidden rounded-t-[4rem] border-none bg-gradient-to-br from-[#242A99] to-[#3D46FF]">
-        {/* Grid Background Pattern */}
-        <div
-          className="absolute inset-0 bg-[url('/line.png')] bg-center bg-repeat opacity-20"
-          style={{
-            backgroundSize: "1000px 1000px",
-            transform: "rotate(-90deg) scale(1.5)",
-          }}
-          aria-hidden="true"
-        />
- 
+      <div className="relative h-[706px] w-full overflow-hidden rounded-t-[4rem] border-none bg-[url('/images/background-grid.png')] bg-no-repeat bg-cover">
         {/* Main Content */}
-        <div className="w-full mx-auto pl-10 pt-20 pb-16 md:pt-32">
+        <div className="w-full px-[4rem] pt-[4rem]">
           <div className="grid gap-8 md:grid-cols-3 items-center">
             {/* First Column (Takes up more space) */}
-            <div className=" w-[110%] col-span-2">
+            <div className=" w-full col-span-2">
               <h1 className="text-4xl md:text-4xl lg:text-5xl font-extrabold font-montserrat text-white mb-6 leading-tight">
                 Experience the Future of <br/> Private & Secure Payments
               </h1>
@@ -35,26 +25,23 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Empty Second Column for spacing or future content */}
-            <div></div>
-          </div>
-        </div>
-         <StatsSection/>
-      </div>
-
-      {/* Floating Image Outside */}
-      <div className=" transform -translate-y-1/2 z-10">
-        <div className="relative left-[94%] -top-96  w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] animate-float">
+            {/* Floating Image Outside */}
+      <div className=" ">
+        <div className=" animate-float">
           <Image
             src="/cat.svg"
             alt="Crypto token illustration"
-            width={350}
-            height={350}
-            className="object-contain"
+            width={500}
+            height={500}
+            className="object-contain w-[450px] h-[350px] z-20"
             priority
           />
         </div>
         
+      </div>
+          </div>
+        </div>
+        <StatsSection/>
       </div>
      
       </>

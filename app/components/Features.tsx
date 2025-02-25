@@ -31,7 +31,7 @@ const featuresData = [
 
 const Features = () => {
     return (
-<section className="font-montserrat w-full h-auto md:h-[586px] py-10  px-3 max-w-[1068px] mx-auto bg-[var(--background)] rounded-[31px] flex flex-col items-center justify-center gap-6  " >
+<section className="font-montserrat w-full h-auto md:h-[586px] py-10  px-3  mx-auto bg-[var(--background)] rounded-[31px] flex flex-col items-center justify-center gap-6 my-6  " >
 
     <div className="text-center flex items-center justify-center flex-col gap-4 " >
         <h1 className=" text-[#1E1E1E] font-bold text-4xl " >Key Features</h1>
