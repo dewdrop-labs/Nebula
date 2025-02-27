@@ -91,7 +91,7 @@ const LoginForm: React.FC = () => {
 
             <div className="text-center text-sm font-medium">
               New User?{' '}
-              <Link href="/sign-up" className="font-normal text-[#302F2F] underline">
+              <Link href="/register" className="font-normal text-[#302F2F] underline">
                 Sign Up
               </Link>
             </div>
