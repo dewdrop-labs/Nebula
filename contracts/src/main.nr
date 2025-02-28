@@ -23,6 +23,27 @@ struct Storage<Context> {
 fn constructor(admin: AztecAddress) {
     storage.owner.write(admin);
 }
+     #[private]
+    fn register_user_with_email(email_hash: Field) {
+        // Check if the email is already registered
+        let existing_user = get_user_address(email_hash);
+        assert(!existing_user.is_zero(), "Email already registered");
+
+        // Generate a wallet address from the email hash
+        let user = generate_wallet_address(email_hash);
+
+        // Call register_user to complete the registration
+        Nebula::at(context.this_address())
+            .register_user(email_hash, user)
+            .enqueue(&mut context);
+    }
+
+    #[private]
+    fn generate_wallet_address(email_hash: Field) -> AztecAddress {
+        let address_bytes = keccak(email_hash.to_bytes()); // Hash the email hash
+        let address = AztecAddress::from_bytes(address_bytes); // Convert to AztecAddress
+        address
+    }
 
     #[private]
     fn register_user(email_hash: Field, user: AztecAddress) {
