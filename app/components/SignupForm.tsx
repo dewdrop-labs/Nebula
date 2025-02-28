@@ -42,7 +42,7 @@ export default function SignupForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full h-full max-w-[340px]  flex items-center justify-center flex-col gap-5"
+      className="font-montserrat w-full h-full max-w-[340px]  flex items-center justify-center flex-col gap-5"
     >
       <label
         htmlFor="name"
@@ -90,7 +90,7 @@ export default function SignupForm() {
           onChange={handleChange}
           className="w-full outline-none border-none  font-normal text-sm text-[#302F2F]"
         />
-      <button onClick={togglePassword} > {showPassword? <EyeIcon/>  : <EyeOff/>} </button>
+      <button onClick={togglePassword} > {showPassword? <EyeIcon size={16} />  : <EyeOff  size={16}/>} </button>
 </div>
       </label>
 

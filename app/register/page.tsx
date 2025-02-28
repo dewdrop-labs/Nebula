@@ -16,7 +16,7 @@ export default function Page() {
         </div>
 
         <div className="bg-[#F2F2F2] w-full max-w-[572px] flex flex-col gap-7 items-center justify-center py-[94px] p-6">
-          <h1 className="text-[#000000] text-[26px] font-normal">
+          <h1 className="text-[#000000] text-[26px] font-normal mb-6 ">
             Create an account
           </h1>
           <SignupForm />
