@@ -3,6 +3,8 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import {  EyeIcon, EyeOff} from "lucide-react";
 
+import Loader from "./loader";
+
 const appleLogo = "/apple-logo.svg";
 const googleLogo = "/google.svg";
 
@@ -21,6 +23,7 @@ export default function SignupForm() {
     password: "",
     agreement: false,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
@@ -31,8 +34,14 @@ export default function SignupForm() {
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
     console.log(formValues);
+    setTimeout(() => {
+      console.log("Form submitted", formValues);
+      setLoading(false);
+      window.location.href = '/verify-email';
+    }, 8000);
   };
 
   const togglePassword = () => {
@@ -40,6 +49,18 @@ export default function SignupForm() {
   }
 
   return (
+    <>
+    {loading && (
+      <Loader
+        steps={[
+          "Registering your account",
+          "Generating your wallet",
+          "Securing your credentials",
+          "Account registered",
+        ]}
+        onComplete={() => setLoading(false)}
+      />
+    )}
     <form
       onSubmit={handleSubmit}
       className="font-montserrat w-full h-full max-w-[340px]  flex items-center justify-center flex-col gap-5"
@@ -141,5 +162,6 @@ export default function SignupForm() {
         </Link>
       </p>
     </form>
+    </>
   );
 }
