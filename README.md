@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aztec Wallet Integration
 
-## Getting Started
+This document explains how we integrated Aztec wallet creation into Nebula, allowing for automated account creation during user registration.
 
-First, run the development server:
+## Overview
 
+The integration allows your application to:
+- Create Aztec accounts programmatically during user registration
+- Store wallet information securely
+- Handle the complexities of the Aztec CLI
+- Prevent duplicate wallet creation for existing users
+
+## Prerequisites
+
+- Node.js 14.x or later
+- Next.js application
+- Docker installed and running
+- Aztec Sandbox installed
+
+## Installation
+
+1. Install the Aztec toolchain:
+   ```bash
+   bash -i <(curl -s https://install.aztec.network)
+   ```
+
+2. Install required dependencies:
+   ```bash
+   npm install child_process fs path util
+   ```
+
+3. For MacOS users, install socat:
+   ```bash
+   brew install socat
+   ```
+
+4. Start the Aztec sandbox:
+   ```bash
+   aztec start --sandbox
+   ```
+
+## How to setup this project
+
+ 1. fork and clone the repository
+
+ 2. run the npm installation command
+  ```bash
+  npm install
+  ```
+
+3. make sure to start your docker engine and the aztec sandbox. Install the sandbox if you haven't
+```bash
+aztec start --sandbox
+``` 
+
+4. run the app on development 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. visit the local development url and register or login with Google to get access to all the features.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+###Happy Hacking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Maintenance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Updating Aztec
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To update the Aztec toolchain:
 
-## Deploy on Vercel
+```bash
+aztec-up
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Checking Wallet Information
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To verify wallet information for a user directly from the CLI:
+
+```bash
+aztec-wallet get-alias accounts:<alias>
+```
+
+### Troubleshooting
+
+If you encounter issues:
+
+1. Ensure the Aztec sandbox is running: `aztec status`
+2. Restart the sandbox: `aztec stop && aztec start --sandbox`
+3. Check for errors in the logs: `aztec logs`
+4. Try creating a wallet manually to verify the CLI works: `aztec-wallet create-account -a test-account -payment method=fee_juice,feePayer=test0`
