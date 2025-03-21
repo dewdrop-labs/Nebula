@@ -60,7 +60,7 @@ npm run dev
 
 5. visit the local development url and register or login with Google to get access to all the features.
 
-###Happy Hacking
+### Happy Hacking
 
 
 
