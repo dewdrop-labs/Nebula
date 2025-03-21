@@ -47,18 +47,23 @@ The integration allows your application to:
   ```bash
   npm install
   ```
+3. copy the env.template into an env.local and provide the credentials needed inside it
+    ```bash
+    cp env.template env.local
+    ```
 
-3. make sure to start your docker engine and the aztec sandbox. Install the sandbox if you haven't
+
+4. make sure to start your docker engine and the aztec sandbox. Install the sandbox if you haven't
 ```bash
 aztec start --sandbox
 ``` 
 
-4. run the app on development 
+5. run the app on development 
 ```bash
 npm run dev
 ```
 
-5. visit the local development url and register or login with Google to get access to all the features.
+6. visit the local development url and register or login with Google to get access to all the features.
 
 ### Happy Hacking
 
