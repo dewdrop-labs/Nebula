@@ -11,10 +11,10 @@ const Loader: React.FC<LoaderProps> = ({ steps = [], onComplete }) => {
   useEffect(() => {
     if (steps.length === 0) return;
     if (currentStep < steps.length - 1) {
-      const timer = setTimeout(() => setCurrentStep(currentStep + 1), 2000);
+      const timer = setTimeout(() => setCurrentStep(currentStep + 1), 700);
       return () => clearTimeout(timer);
     } else {
-      const completeTimer = setTimeout(() => onComplete && onComplete(), 2000);
+      const completeTimer = setTimeout(() => onComplete && onComplete(), 1500);
       return () => clearTimeout(completeTimer);
     }
   }, [currentStep, steps.length, onComplete]);
