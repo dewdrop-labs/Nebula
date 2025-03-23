@@ -2,11 +2,12 @@ use dep::aztec::macros::aztec;
 
 #[aztec]
 pub contract Nebula {
+    use authwit::auth::assert_current_call_valid_authwit;
     use dep::aztec::{
-        keys::getters::get_public_keys,
-        macros::{functions::{initializer, internal, private, public}, storage::storage},
+        macros::{functions::{initializer, private, public}, storage::storage},
+        prelude::{AztecAddress, Map, PrivateMutable, PublicImmutable},
+         protocol_types::{constants::MAX_FIELD_VALUE, traits::ToField},
     };
-    use dep::aztec::prelude::{AztecAddress, Map, PublicImmutable, PublicMutable};
 
 
     #[storage]
@@ -20,7 +21,7 @@ pub contract Nebula {
     #[public]
     #[initializer]
     fn constructor(admin: AztecAddress) {
-        storage.owner.write(admin);
+        storage.owner.initialize(admin);
     }
 
 
@@ -49,23 +50,23 @@ pub contract Nebula {
         let is_already_registered = check_if_registered(user);
         assert(!is_already_registered, "Address already registered");
 
-        storage.user_address.at(email_hash).write(user);
-        storage.email_lookup.at(user).write(email_hash);
-        storage.is_registered.at(user).write(true);
+        storage.user_address.at(email_hash).schedule_value_change(user);
+        storage.email_lookup.at(user).schedule_value_change(email_hash);
+        storage.is_registered.at(user).schedule_value_change(true);
     }
 
     #[public]
     fn get_user_address(email_hash: Field) -> AztecAddress {
-        storage.user_address.at(email_hash).read()
+        storage.user_address.at(email_hash).get_current_value()
     }
 
     #[public]
     fn get_user_email(user: AztecAddress) -> Field {
-        storage.email_lookup.at(user).read()
+        storage.email_lookup.at(user).get_current_value()
     }
 
     #[public]
     fn check_if_registered(user: AztecAddress) -> bool {
-        storage.is_registered.at(user).read()
+        storage.is_registered.at(user).get_current_value()
     }
 }
