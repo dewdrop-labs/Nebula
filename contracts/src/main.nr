@@ -3,7 +3,7 @@ use dep::aztec::macros::aztec;
 #[aztec]
 pub contract Nebula {
     use dep::aztec::{
-        macros::{functions::{initializer, private, public, internal}, storage::storage},
+        macros::{functions::{initializer, private, public, internal, view}, storage::storage},
     };
     use dep::aztec::prelude::{AztecAddress, Map, PublicImmutable, PublicMutable};
 
@@ -64,6 +64,7 @@ pub contract Nebula {
     }
 
     #[public]
+    #[view]
     fn check_if_registered(user: AztecAddress) -> bool {
         storage.is_registered.at(user).read()
     }
