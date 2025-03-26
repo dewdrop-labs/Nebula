@@ -2,6 +2,7 @@
   "name": "nebula",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,10 +10,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aztec/accounts": "^0.76.4-devnet-test-rc3",
-    "@aztec/aztec.js": "^0.76.4-devnet-test-rc3",
-    "@aztec/noir-contracts.js": "^0.76.4-devnet-test-rc3",
+    "@aztec/accounts": "^0.82.2-devnet-test-rc3",
+    "@aztec/aztec.js": "^0.82.2",
+    "@aztec/noir-contracts.js": "^0.82.2-devnet-test-rc3",
     "@vercel/postgres": "^0.10.0",
+    "bcrypt": "^5.1.1",
     "child_process": "^1.0.2",
     "fs": "^0.0.1-security",
     "lucide-react": "^0.475.0",
@@ -25,14 +27,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.17.27",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   },
   "main": "index.js",
   "author": "Isaac Onyemaechi <amaechiisaac450@gmail.com>",

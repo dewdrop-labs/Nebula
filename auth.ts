@@ -1,5 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { sql } from "@vercel/postgres";
+import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -7,6 +10,53 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
     }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        try {
+          // Find user in database
+          const result = await sql`
+            SELECT * FROM users WHERE google_email = ${credentials.email}
+          `;
+
+          if (result.rows.length === 0) {
+            return null;
+          }
+
+          const user = result.rows[0];
+
+          // Verify password
+          const isValid = await bcrypt.compare(credentials.password, user.password);
+          
+          if (!isValid) {
+            return null;
+          }
+
+          // Update last login
+          await sql`
+            UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ${user.id}
+          `;
+
+          // Return only the basic user information
+          return {
+            id: user.id.toString(),
+            email: user.google_email,
+            name: user.name || user.google_email
+          };
+        } catch (error) {
+          console.error("Auth error:", error);
+          return null;
+        }
+      }
+    })
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -39,8 +89,11 @@ export const authOptions: NextAuthOptions = {
         }
       }
       return true;
-    },
+    }
   },
+  pages: {
+    signIn: '/login'
+  }
 };
 
 export default authOptions;
