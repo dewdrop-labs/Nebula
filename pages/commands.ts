@@ -5,8 +5,6 @@ import { Contract } from "@aztec/aztec.js";
 import { readFileSync } from "fs";
 import { AztecAddress } from "@aztec/aztec.js";
 import { NebulaContractArtifact } from "@/contracts/src/artifacts/Nebula";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "../auth";
 
 const { PXE_URL = "http://localhost:8080" } = process.env;
 

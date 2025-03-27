@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// pages/api/aztec/register-user.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { AztecAddress } from '@aztec/aztec.js';
 import { getInitialTestAccountsWallets } from '@aztec/accounts/testing';

@@ -1,4 +1,3 @@
-// pages/api/login.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';

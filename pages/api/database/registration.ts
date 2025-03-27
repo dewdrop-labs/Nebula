@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// pages/api/database/registration.ts
 import { sql } from "@vercel/postgres";
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createAztecWallet } from "./create-wallet";

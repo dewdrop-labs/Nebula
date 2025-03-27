@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/contracts.ts
 import { NebulaContractArtifact } from '@/contracts/src/artifacts/Nebula';
 import { AztecAddress } from '@aztec/aztec.js';
 import { Contract } from '@aztec/aztec.js';
