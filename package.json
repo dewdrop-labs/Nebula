@@ -10,9 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aztec/accounts": "^0.82.2-devnet-test-rc3",
-    "@aztec/aztec.js": "^0.82.2",
-    "@aztec/noir-contracts.js": "^0.82.2-devnet-test-rc3",
+    "@aztec/accounts": "^0.81.0",
+    "@aztec/aztec.js": "^0.81.0",
+    "@aztec/noir-contracts.js": "^0.82.3",
     "@vercel/postgres": "^0.10.0",
     "bcrypt": "^5.1.1",
     "child_process": "^1.0.2",

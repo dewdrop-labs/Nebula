@@ -8,7 +8,8 @@ const PXE_URL = process.env.PXE_URL || 'http://localhost:8080';
 async function main() {
   console.log('Connecting to PXE...');
   const pxe = createPXEClient(PXE_URL);
-  await waitForPXE(pxe);
+  const pxe_start = await waitForPXE(pxe);
+  console.log('pxe start', pxe_start);
   
   console.log('Getting test accounts...');
   const [ownerWallet] = await getInitialTestAccountsWallets(pxe);
