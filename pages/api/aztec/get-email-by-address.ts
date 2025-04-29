@@ -8,7 +8,8 @@ import { createPXEClient, waitForPXE } from '@aztec/aztec.js';
 import { getNebulaContract } from './register-user';
 
 
-const { PXE_URL = 'http://localhost:8080' } = process.env;
+//const { PXE_URL = 'http://localhost:8080' } = process.env;
+const { PXE_URL = process.env.L2_NODE || "https://l2.testnet.nemi.fi"} = process.env;
 
 
 export default async function handler(
@@ -41,6 +42,8 @@ export default async function handler(
 
     // Get the contract owner wallet
     const [ownerWallet] = await getInitialTestAccountsWallets(pxe);
+
+    console.log('owner wallet', ownerWallet)
     
     // Get the contract
     const nebulaContract = await getNebulaContract(ownerWallet);
@@ -49,6 +52,8 @@ export default async function handler(
     const emailHash = await nebulaContract.methods
       .get_user_email(userAddress)
       .simulate();
+
+    console.log('email hash', emailHash)
     
     return res.status(200).json({ 
       success: true, 

@@ -17,7 +17,7 @@ pub contract Nebula {
 
     use dep::aztec::{
         context::{PrivateCallInterface, PrivateContext},
-        encrypted_logs::log_assembly_strategies::default_aes128::{
+        messages::logs::{
             event::encode_and_encrypt_event_unconstrained,
             note::{encode_and_encrypt_note, encode_and_encrypt_note_unconstrained},
         },
@@ -647,7 +647,7 @@ fn _finalize_mint_to_private_by_email(
     }
 
     /// Unconstrained ///
-    pub(crate) unconstrained fn balance_of_private(owner: AztecAddress) -> pub u128 {
-        storage.balances.at(owner).balance_of()
-    }
+    // pub(crate) unconstrained fn balance_of_private(owner: AztecAddress) -> pub u128 {
+    //     storage.balances.at(owner).balance_of()
+    // }
 }

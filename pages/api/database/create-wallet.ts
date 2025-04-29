@@ -33,7 +33,7 @@ export async function createAztecWallet(email: any) {
   
   try {
     // Execute the Aztec wallet CLI command to create an account
-    const command = `aztec-wallet create-account -a "${alias}" -payment method=fee_juice,feePayer=test0 --no-wait`;
+    const command = `aztec-wallet create-account -a "${alias}" --payment method=fpc-sponsored,fpc=0x0b27e30667202907fc700d50e9bc816be42f8141fae8b9f2281873dbdb9fc2e5 --node-url ${process.env.L2_NODE} --no-wait`;
     console.log(`Executing command: ${command}`);
     
     let stdout = '';

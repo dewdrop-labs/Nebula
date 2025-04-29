@@ -6,7 +6,8 @@ import { getInitialTestAccountsWallets } from '@aztec/accounts/testing';
 import { createPXEClient, waitForPXE } from '@aztec/aztec.js';
 import { getNebulaContract, hashEmail } from './register-user';
 
-const { PXE_URL = 'http://localhost:8080' } = process.env;
+//const { PXE_URL = 'http://localhost:8080' } = process.env;
+const { PXE_URL = process.env.L2_NODE || "https://l2.testnet.nemi.fi"} = process.env;
 
 
 export default async function handler(

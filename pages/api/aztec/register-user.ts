@@ -4,10 +4,11 @@ import { AztecAddress } from '@aztec/aztec.js';
 import { getInitialTestAccountsWallets } from '@aztec/accounts/testing';
 import { createPXEClient, waitForPXE } from '@aztec/aztec.js';
 import { Contract } from '@aztec/aztec.js';
-import { readFileSync } from 'fs';
+//import { readFileSync } from 'fs';
 import { NebulaContractArtifact } from '@/contracts/src/artifacts/Nebula';
 
-const { PXE_URL = 'http://localhost:8080' } = process.env;
+//const { PXE_URL = 'http://localhost:8080' } = process.env;
+const { PXE_URL = process.env.L2_NODE || "https://l2.testnet.nemi.fi"} = process.env;
 
 // Utility function to hash an email
 export function hashEmail(email: string): bigint {
@@ -24,8 +25,12 @@ export function hashEmail(email: string): bigint {
 }
 
 export async function getNebulaContract(wallet: any) {
-  const addresses = JSON.parse(readFileSync('addresses.json', 'utf8'));
-  const nebulaAddress = addresses.nebula;
+  //const addresses = JSON.parse(readFileSync('addresses.json', 'utf8'));
+  const nebulaAddress = process.env.NEBULA_CONTRACT_ADDRESS;
+
+  if (!nebulaAddress) {
+    throw new Error('Nebula contract address is not defined in the environment variables.');
+  }
 
   console.log('Using Nebula contract address:', nebulaAddress);
 
@@ -49,7 +54,8 @@ export default async function handler(
 
     // Connect to Aztec
     const pxe = createPXEClient(PXE_URL);
-    await waitForPXE(pxe);
+    const pxe_info = await waitForPXE(pxe);
+    console.log('pxe info', pxe_info);
 
     // Create user address
     const userAddress = AztecAddress.fromString(walletAddress);

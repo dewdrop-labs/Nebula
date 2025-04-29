@@ -2,12 +2,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../../auth';
-import { getInitialTestAccountsWallets } from '@aztec/accounts/testing';
-import { createPXEClient, waitForPXE } from '@aztec/aztec.js';
-import { getNebulaContract, hashEmail } from './register-user';
-
-const { PXE_URL = 'http://localhost:8080' } = process.env;
-
+import { initPXE, nebulaContract } from '@/pages/pxeClient';
+import { hashEmail } from './register-user';
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,7 +13,6 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
-  // Verify the user is authenticated
   const session = await getServerSession(req, res, authOptions);
   if (!session?.user?.email) {
     return res.status(401).json({ success: false, message: 'Unauthorized' });
@@ -26,25 +21,14 @@ export default async function handler(
   try {
     const { email } = req.body;
     
-    // Verify the email in the request matches the authenticated user's email
     if (email !== session.user.email) {
       return res.status(403).json({ success: false, message: 'Forbidden: Email mismatch' });
     }
 
-    // Connect to Aztec
-    const pxe = createPXEClient(PXE_URL);
-    await waitForPXE(pxe);
+    await initPXE(); // only initializes once
 
-    // Get the contract owner wallet
-    const [ownerWallet] = await getInitialTestAccountsWallets(pxe);
-    
-    // Get the contract
-    const nebulaContract = await getNebulaContract(ownerWallet);
-
-    // Hash the email
     const emailHash = hashEmail(email);
 
-    // Get user address by email hash
     const userAddress = await nebulaContract.methods
       .get_user_address(emailHash)
       .simulate();

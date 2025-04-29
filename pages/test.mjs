@@ -6,8 +6,11 @@ async function main() {
   
   try {
     console.log('Creating PXE client...');
-    const pxe = createPXEClient('http://localhost:8080');
+    const pxe = createPXEClient(process.env.L2_NODE);
     console.log('PXE client created');
+   // After creating the PXE client
+// const pxeInfo = ;
+// console.log('Connected PXE version:', await pxe.getPXEInfo());
     
     // Inspect the PXE object to see what methods are available
     console.log('Available PXE methods:');
@@ -22,12 +25,12 @@ async function main() {
     
     if (typeof pxe.getNodeInfo === 'function') {
       console.log('Getting node info...');
-      const nodeInfo = await pxe.getNodeInfo();
+      const nodeInfo = await pxe.getPXEInfo();
       console.log('Node info:', nodeInfo);
     }
     
     // Try other potential status methods
-    for (const method of ['status', 'getInfo', 'getChainInfo', 'getNetworkInfo']) {
+    for (const method of ['status', 'getNotes', 'getContractMetadata', 'getNetworkInfo']) {
       if (typeof pxe[method] === 'function') {
         console.log(`Trying ${method}()...`);
         try {
